@@ -12,7 +12,22 @@ function isPalindrome(word) {
   
   return true;
 }
+function hasTargetSum(arr, target) {
+  const seenNumbers = {};
 
+  for (let i = 0; i < arr.length; i++) {
+    const currentNumber = arr[i];
+    const difference = target - currentNumber;
+
+    if (seenNumbers[difference]) {
+      return true;
+    }
+
+    seenNumbers[currentNumber] = true;
+  }
+
+  return false;
+}
 /* 
   Add your pseudocode here
   Function isPalindrome(word):
@@ -51,6 +66,9 @@ if (require.main === module) {
 
   console.log("Expecting: false");
   console.log("=>", isPalindrome("robot"));
+  console.log(hasTargetSum([3, 8, 12, 4, 11, 7], 10)); // Expecting: true
+  console.log(hasTargetSum([22, 19, 4, 6, 30], 25));    // Expecting: true
+  console.log(hasTargetSum([1, 2, 5], 4));              // Expecting: false
 }
 
 module.exports = isPalindrome;
